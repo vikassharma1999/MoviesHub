@@ -1,6 +1,8 @@
 require('dotenv').config();
 const express = require('express');
 const mongoose = require('mongoose');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
 const app = express();
 //DB Connection
 mongoose
@@ -11,6 +13,12 @@ mongoose
   })
   .then(() => console.log('DB Connected...'));
 
+//init middleware
+app.use(bodyParser.json());
+app.use(cookieParser());
+//API
+app.use('/api/user', require('./routes/user'));
+app.use('/api/movies', require('./routes/movie'));
 const PORT = process.env.PORT || 8000;
 app.get('/', (req, res) => res.send('API RUNNING..'));
 app.listen(PORT, () => console.log(`Server is running on ${PORT}`));
