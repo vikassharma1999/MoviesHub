@@ -15,7 +15,7 @@ cd client/
 # Install dependencies 
 npm install
 
-# To start the Application got to root directory
+# To start the Application go to root directory
 cd..
 sudo npm run dev
 
