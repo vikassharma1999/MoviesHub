@@ -1,7 +1,6 @@
 const express = require('express');
 const router = express.Router();
 const { check, validationResult } = require('express-validator');
-const auth = require('../middleware/auth');
 const Movie = require('../models/Movie');
 // API end point POST /api/movies
 // Desc add movies
@@ -9,20 +8,19 @@ const Movie = require('../models/Movie');
 
 router.post(
   '/',
+
   [
-    auth,
-    [
-      check('name', 'Name is required')
-        .not()
-        .isEmpty(),
-      check('imageurl', 'Image URL is required')
-        .not()
-        .isEmpty(),
-      check('summary', 'Summary is required')
-        .not()
-        .isEmpty(),
-    ],
+    check('name', 'Name is required')
+      .not()
+      .isEmpty(),
+    check('imageurl', 'Image URL is required')
+      .not()
+      .isEmpty(),
+    check('summary', 'Summary is required')
+      .not()
+      .isEmpty(),
   ],
+
   async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -54,6 +52,6 @@ router.get('/', async (req, res) => {
   if (!movies) {
     return res.status(400).json({ msg: 'No movies found' });
   }
-  res.send(movies);
+  return res.send(movies);
 });
 module.exports = router;

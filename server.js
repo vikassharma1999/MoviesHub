@@ -3,6 +3,7 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const cookieParser = require('cookie-parser');
+const cors = require('cors');
 const app = express();
 //DB Connection
 mongoose
@@ -16,8 +17,8 @@ mongoose
 //init middleware
 app.use(bodyParser.json());
 app.use(cookieParser());
+app.use(cors());
 //API
-app.use('/api/user', require('./routes/user'));
 app.use('/api/movies', require('./routes/movie'));
 const PORT = process.env.PORT || 8000;
 app.get('/', (req, res) => res.send('API RUNNING..'));
