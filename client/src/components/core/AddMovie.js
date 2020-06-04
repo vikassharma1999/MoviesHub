@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { AddMovies } from './coreapicalls';
 const AddMovie = () => {
   const [formData, setFormData] = useState({
